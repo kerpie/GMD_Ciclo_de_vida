@@ -1,6 +1,8 @@
 package com.herovitamin.ciclodevida;
 
 import android.os.PersistableBundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +37,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.i(TAG, "Estoy en onResume()");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        NewFragment newFragment = NewFragment.newInstance();
+
+        fragmentTransaction
+                .add(R.id.fragment_container, newFragment)
+                .addToBackStack("")
+                .commit();
+
     }
 
     @Override
